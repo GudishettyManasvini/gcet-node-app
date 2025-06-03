@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/weather", (req, res) => {
-  return res.send("Heyy!! Today's weather is 28"); 
+  return res.send("Heyy!! Today's weather is 28 degrees"); 
 });
 
 app.get("/name", (req, res) => {
