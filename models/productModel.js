@@ -3,4 +3,5 @@ const productSchema = mongoose.Schema({
     productname : {type: String},
     price: {type:Number},
 });
-const product = mongoose.model("Product",productSchema);
+// const product = mongoose.model("Product",productSchema);
+export default mongoose.model("Product",productSchema);
