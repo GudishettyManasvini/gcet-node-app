@@ -23,9 +23,9 @@ productRouter.post("/add", async (req, res) => {
   }
 });
 
-productRouter.get("/all", async (req, res) => {
-  const products = await productModel.find();
-  res.json(products);
-});
+// productRouter.get("/all", async (req, res) => {
+//   const products = await productModel.find();
+//   res.json(products);
+// });
 
-export default productRouter;
+export default productRouter;  
