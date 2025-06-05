@@ -1,50 +1,56 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import userModel from "./models/userModel.js";
-import productModel from "./models/productModel.js";
+import userRouter from "./routes/userRoutes.js";
+import productRouter from "./routes/productRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 
 const app = express();
- app.use(cors());
+
+const MONGODB_URI = process.env.MONGODB_URI
+
+app.use(cors()); 
 app.use(express.json());
 
-app.listen(8080, () => {
-    mongoose.connect("mongodb://localhost:27017/gcet");
-  console.log("Server Started ");
-});
 
 
+app.use("/orders", orderRouter); 
 
-app.post("/register", async(req, res)=>{
-    const {name,email,pass} = req.body
-    const result = await userModel.insertOne({name: name,email: email, pass: pass});
-    return res.json(result);
-})
+app.use("/users", userRouter);
 
-app.post("/login", async(req, res)=>{
-    const {email,pass} = req.body
-    const result = await userModel.findOne({email, pass});
-    if(!result) return res.json({message:"Invalid User or Password"})
-    return res.json(result);
-})
+app.use("/products", productRouter);
+
 
 app.get("/", (req, res) => {
   return res.send("Hello! Good morning :)");
 });
 
 app.get("/weather", (req, res) => {
-  return res.send("Heyy!! Today's weather is 28 degrees"); 
+  return res.send("Heyy!! Today's weather is 28"); 
 });
 
 app.get("/name", (req, res) => {
   return res.send("Hello Manasvini!"); 
 });
+const DBUSER = encodeURIComponent(process.env.DBUSER)
+const DBPASS = encodeURIComponent(process.env.DBPASS)
+const MONGO_URI =`mongodb+srv://${DBUSER}:{${DBPASS}@cluster0.ai8pz43.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 
-app.get("/products", async (req, res) => {
-  try {
-    const products = await productModel.find(); 
-    return res.json(products);
-  } catch (error) {
-    return res.status(500).json({ message: "Error fetching products", error });
-  }
-});
+
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    app.listen(8080, () => {
+      console.log("Server started on port 8080");
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  
