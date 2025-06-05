@@ -22,4 +22,10 @@ productRouter.post("/add", async (req, res) => {
     res.status(500).json({ message: "Error adding product", error });
   }
 });
+
+productRouter.get("/all", async (req, res) => {
+  const products = await productModel.find();
+  res.json(products);
+});
+
 export default productRouter;
