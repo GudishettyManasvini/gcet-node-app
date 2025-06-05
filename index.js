@@ -38,7 +38,7 @@ app.get("/name", (req, res) => {
 });
 const DBUSER = encodeURIComponent(process.env.DBUSER)
 const DBPASS = encodeURIComponent(process.env.DBPASS)
-const MONGO_URI =`mongodb+srv://manasvinishetty01:AskFHO2kkUiCPJve@cluster0.ai8pz43.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+const MONGO_URI =`mongodb+srv://manasvinishetty01:AskFHO2kkUiCPJve@cluster0.ai8pz43.mongodb.net/gcet?retryWrites=true&w=majority&appName=Cluster0`
 
 
 
