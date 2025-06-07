@@ -34,16 +34,12 @@ app.get("/weather", (req, res) => {
 });
 
 app.get("/name", (req, res) => {
-  return res.send("Hello Manasvini!"); 
+  return res.send("Hello Rishitha!"); 
 });
-const DBUSER = encodeURIComponent(process.env.DBUSER)
-const DBPASS = encodeURIComponent(process.env.DBPASS)
-const MONGO_URI =`mongodb+srv://manasvinishetty01:AskFHO2kkUiCPJve@cluster0.ai8pz43.mongodb.net/gcet?retryWrites=true&w=majority&appName=Cluster0`
-
 
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(MONGODB_URI)
   .then(() => {
     app.listen(8080, () => {
       console.log("Server started on port 8080");
