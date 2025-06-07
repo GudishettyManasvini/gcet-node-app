@@ -16,22 +16,31 @@ const DBUSER = encodeURIComponent(process.env.DBUSER)
 const DBPASS = encodeURIComponent(process.env.DBPASS)
 const MONGO_URI =`mongodb+srv://${DBUSER}:${DBPASS}@cluster0.ai8pz43.mongodb.net/gcet?retryWrites=true&w=majority&appName=Cluster0`
 
-// const MONGO_URI = process.env.MONGO_URI
+mongoose
+  .connect(MONGO_URI)
+  .then(() => {
+    console.log("MongoDB Connected Successfully");
+  })
+  .catch((error) => {
+    console.log("MongoDB Connection Error:", error);
+  });
+  
+  // const MONGO_URI = process.env.MONGO_URI
 //testing
 app.use("/users", userRouter);
 app.use("/products", productRouter);
 app.use("/orders",orderRouter)
 
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    app.listen(8080, () => {
-      console.log("Server Started on port 8080");
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// mongoose
+//   .connect(MONGO_URI)
+//   .then(() => {
+//     app.listen(8080, () => {
+//       console.log("Server Started on port 8080");
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
   export default app;
   
