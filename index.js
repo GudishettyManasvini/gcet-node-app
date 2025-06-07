@@ -19,7 +19,7 @@ const MONGO_URI =`mongodb+srv://${DBUSER}:${DBPASS}@cluster0.ai8pz43.mongodb.net
 mongoose
   .connect(MONGO_URI)
   .then(() => {
-    console.log("MongoDB Connected Successfully");
+    console.log("Server started");
   })
   .catch((error) => {
     console.log("MongoDB Connection Error:", error);
